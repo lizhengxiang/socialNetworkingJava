@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.g7love.mappers.dynamic.DynamicMapper">
+	<resultMap id="getDynamicResult" type="map">
+		<result property="id" column="id" javaType="java.lang.Integer"></result>
+		<result property="userid" column="userid" javaType="java.lang.String"></result>
+		<result property="content" column="content" javaType="java.lang.String"></result>
+		<result property="pic1" column="pic1" javaType="java.lang.String"></result>
+		<result property="pic2" column="pic2" javaType="java.lang.String"></result>
+		<result property="pic3" column="pic3" javaType="java.lang.String"></result>
+		<result property="pic4" column="pic4" javaType="java.lang.String"></result>
+		<result property="createtime" column="createtime" javaType="java.lang.String"></result>
+		<result property="praise" column="praise" javaType="java.lang.String"></result>
+		<result property="forwardingNum" column="forwardingNum" javaType="java.lang.String"></result>
+		<result property="reportNum" column="reportNum" javaType="java.lang.String"></result>
+		<result property="headPortrait" column="headPortrait" javaType="java.lang.String"></result>
+		<result property="backgroundImage" column="backgroundImage" javaType="java.lang.String"></result>
+		<result property="motto" column="motto" javaType="java.lang.String"></result>
+		<result property="nickname" column="nickname" javaType="java.lang.String"></result>
+		<result property="birthday" column="birthday" javaType="java.lang.String"></result>
+		<result property="gender" column="gender" javaType="java.lang.String"></result>
+		<result property="school" column="school" javaType="java.lang.String"></result>
+	</resultMap>
+	
+	<select id="getDynamic" parameterType="java.util.Map" resultMap="getDynamicResult">
+		SELECT 
+		    `dynamic`.`id`,
+			`dynamic`.`userid`,
+		    `content`,
+		    `pic1`,
+		    `pic2`,
+		    `pic3`,
+		    `pic4`,
+		    `dynamic`.`createtime`,
+		    `praise`,
+		    `forwardingNum`,
+		    `reportNum`,
+		    `registered`.`headPortrait`,
+		    `registered`.`backgroundImage`,
+		    `registered`.`motto`,
+		    `registered`.`nickname`,
+		    `registered`.`birthday`,
+		    `registered`.`gender`,
+		    `school`.`name` AS `school`
+		FROM
+		    `dynamic`
+		        LEFT JOIN
+		    `registered` ON registered.userid = dynamic.userid
+		        LEFT JOIN
+		    `school` ON registered.school = school.id
+		WHERE dynamic.deleted = 0
+		ORDER BY `createtime` DESC
+		limit ${getdynamic.pageNo},${getdynamic.pageSize}
+	</select>
+	
+</mapper>
