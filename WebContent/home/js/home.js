@@ -226,7 +226,7 @@ $(function () {
             tag = 1;
         }
         if(!tag){
-            load('login', 'login', login, function(resultData) {
+            load('dynamic', 'getdynamic', login, function(resultData) {
                 if(resultData['data']){
                     layer.msg(resultData['data'], {
                         offset: 0,

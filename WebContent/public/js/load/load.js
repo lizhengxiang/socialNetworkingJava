@@ -5,7 +5,7 @@ function load(module, method, params, callback) {
     callback = callback || false;
     var self = this,
         result = false;
-    var url = 'http://socialnetworking.com/index.php?r=';
+    var url = 'http://localhost:8080/socialNetworkingJava/';
     var purl =url + module + '/' + method;
     var result = false;
     $.ajax({
