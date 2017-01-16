@@ -3,7 +3,10 @@ package com.g7love.controllers.permissions;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -26,12 +29,10 @@ public class permissionsController {
 	 */
 	@ResponseBody
 	@RequestMapping("/permissions/login")
-	public Map<String, Object> login(HttpServletRequest req){
+	public Map<String, Object> login(HttpServletRequest req,HttpServletResponse response,HttpSession httpSession,HttpSession session){
+		session.setAttribute("username", "lizhengxiang");
 		Map u = permissi.login("100", "20");
 		result<Map> restult = new result<Map>(u, 0,0);
 		return restult.getRestult();
 	}
-	
-	
-
 }

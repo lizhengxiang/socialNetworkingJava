@@ -11,6 +11,22 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	<!-- 启动注解，注册服务，如验证框架、全局类型转换器-->
 	<mvc:annotation-driven/>
 	
+	 <!--配置拦截器, 多个拦截器,顺序执行 -->
+    <mvc:interceptors> 
+           <mvc:interceptor>
+                   <!--  
+                       /**的意思是所有文件夹及里面的子文件夹 
+                       /*是所有文件夹，不含子文件夹 
+                       /是web项目的根目录
+                     --> 
+                   <mvc:mapping path="/**" /> 
+                   <!-- 需排除拦截的地址 -->  
+                   <!--  <mvc:exclude-mapping path="/userController/login"/>  -->
+                   <bean id="commonInterceptor" class="com.g7love.interceptor.CommonInterceptor"></bean> <!--这个类就是我们自定义的Interceptor -->
+          </mvc:interceptor> 
+          <!-- 当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法  -->
+    
+    </mvc:interceptors>
 	
 	<!-- 启动自动扫描 -->
 	<context:component-scan base-package="com.g7love">
