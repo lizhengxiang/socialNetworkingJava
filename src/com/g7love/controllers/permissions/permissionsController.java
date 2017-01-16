@@ -30,9 +30,9 @@ public class permissionsController {
 	@ResponseBody
 	@RequestMapping("/permissions/login")
 	public Map<String, Object> login(HttpServletRequest req,HttpServletResponse response,HttpSession httpSession,HttpSession session){
-		session.setAttribute("username", "lizhengxiang");
-		Map u = permissi.login("100", "20");
-		result<Map> restult = new result<Map>(u, 0,0);
+		int u = permissi.login("2011312050", "521521");
+		session.setAttribute("username", "2011312050");
+		result<Integer> restult = new result<Integer>(u, 0,0);
 		return restult.getRestult();
 	}
 }

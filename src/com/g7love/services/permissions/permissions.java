@@ -7,6 +7,6 @@ public interface permissions {
 	/**
 	 * 用户登陆
 	 */
-	public  Map login(String useName, String passworld);
+	public  int login(String useName, String passworld);
 	
 }

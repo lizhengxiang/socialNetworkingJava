@@ -13,6 +13,7 @@ import com.g7love.help.result;
 import com.g7love.mappers.dynamic.DynamicMapper;
 import com.g7love.services.dynamic.dynamicService;
 import com.g7love.help.tools;
+import com.g7love.interceptor.CommonInterceptor;
 @Service //注重业务层
 public class dynamicServiceimpl implements dynamicService{
 	@Resource //数据层
@@ -48,6 +49,8 @@ public class dynamicServiceimpl implements dynamicService{
 			    System.out.println(e.getMessage());  
 			}  
 		}*/
+		System.out.println("dddddddddd");
+		System.out.println(CommonInterceptor.userid);
 		return result;
 	}
 }
