@@ -25,31 +25,24 @@ public class dynamicServiceimpl implements dynamicService{
      * @todo 获取当前用户的头像等信息，看看会不会影响速度
      */
 	public ArrayList<Map> searchDynamic(getdynamicArgs getdynamic) {
+		if(CommonInterceptor.userid != null){
+			getdynamic.setUserid(CommonInterceptor.userid);
+		}
+		System.out.println("888888");
+		System.out.println(getdynamic.getUserid());
 		ArrayList<Map> result =  um.getDynamic(getdynamic);
 		/*
          * 这里需要处理该用户有没有登陆判断有没有对动态操作AND动态发表离当前时间
          * @todo 计算时间有可能会耗时，dai观察看看会不会影响速度
          */
-		
-		/*int len = result.size();
+		int len = result.size();
 		Date createtime,currentTime = new Date();
-		String dateString;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		tools tools = new tools();
-		for (int i = 0; i < len; i++) {
-			try  
-			{  
-				//dateString = result.get(i).get("createtime");  
-				createtime = sdf.parse(dateString);  
-				System.out.println(tools.timeDifference(createtime, currentTime));
-				tools.timeDifference(createtime, currentTime);
-			}  
-			catch (ParseException e)  
-			{  
-			    System.out.println(e.getMessage());  
-			}  
-		}*/
-		System.out.println("dddddddddd");
+		for (int i = 0; i < len; i++) {  
+			createtime = (Date)result.get(i).get("createtime");
+			String datedeff = tools.timeDifference(createtime, currentTime);
+			result.get(i).put("time", datedeff);
+		}
 		System.out.println(CommonInterceptor.userid);
 		return result;
 	}

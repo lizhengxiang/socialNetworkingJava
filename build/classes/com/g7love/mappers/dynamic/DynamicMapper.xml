@@ -9,7 +9,7 @@
 		<result property="pic2" column="pic2" javaType="java.lang.String"></result>
 		<result property="pic3" column="pic3" javaType="java.lang.String"></result>
 		<result property="pic4" column="pic4" javaType="java.lang.String"></result>
-		<result property="createtime" column="createtime" javaType="java.lang.String"></result>
+		<result property="createtime" column="createtime" javaType="java.util.Date"></result>
 		<result property="praise" column="praise" javaType="java.lang.String"></result>
 		<result property="forwardingNum" column="forwardingNum" javaType="java.lang.String"></result>
 		<result property="reportNum" column="reportNum" javaType="java.lang.String"></result>
@@ -17,39 +17,50 @@
 		<result property="backgroundImage" column="backgroundImage" javaType="java.lang.String"></result>
 		<result property="motto" column="motto" javaType="java.lang.String"></result>
 		<result property="nickname" column="nickname" javaType="java.lang.String"></result>
-		<result property="birthday" column="birthday" javaType="java.lang.String"></result>
+		<result property="birthday" column="birthday" javaType="java.util.Date"></result>
 		<result property="gender" column="gender" javaType="java.lang.String"></result>
 		<result property="school" column="school" javaType="java.lang.String"></result>
+		<result property="forwardingNumTag" column="forwardingNumTag" javaType="java.lang.Integer"></result>
+		<result property="praiseTag" column="praiseTag" javaType="java.lang.Integer"></result>
+		<result property="reportNumTag" column="reportNumTag" javaType="java.lang.Integer"></result>
 	</resultMap>
 	
 	<select id="getDynamic" parameterType="java.util.Map" resultMap="getDynamicResult">
-		SELECT 
-		    `dynamic`.`id`,
+		SELECT
+			`dynamic`.`id`,
 			`dynamic`.`userid`,
-		    `content`,
-		    `pic1`,
-		    `pic2`,
-		    `pic3`,
-		    `pic4`,
-		    `dynamic`.`createtime`,
-		    `praise`,
-		    `forwardingNum`,
-		    `reportNum`,
-		    `registered`.`headPortrait`,
-		    `registered`.`backgroundImage`,
-		    `registered`.`motto`,
-		    `registered`.`nickname`,
-		    `registered`.`birthday`,
-		    `registered`.`gender`,
-		    `school`.`name` AS `school`
+			`content`,
+			`pic1`,
+			`pic2`,
+			`pic3`,
+			`pic4`,
+			`dynamic`.`createtime`,
+			`dynamic`.`praise`,
+			`dynamic`.`forwardingNum`,
+			`dynamic`.`reportNum`,
+			`registered`.`headPortrait`,
+			`registered`.`backgroundImage`,
+			`registered`.`motto`,
+			`registered`.`nickname`,
+			`registered`.`birthday`,
+			`registered`.`gender`,
+			`school`.`name` AS `school`,
+			IFNULL(`dynamiclog`.`reportNum`,0) AS reportNumTag,
+			IFNULL(`dynamiclog`.`praise`,0) AS praiseTag,
+			IFNULL(`dynamiclog`.`forwardingNum`,0) AS forwardingNumTag
 		FROM
-		    `dynamic`
-		        LEFT JOIN
-		    `registered` ON registered.userid = dynamic.userid
-		        LEFT JOIN
-		    `school` ON registered.school = school.id
-		WHERE dynamic.deleted = 0
-		ORDER BY `createtime` DESC
+			`dynamic`
+		LEFT JOIN `registered` ON registered.userid = dynamic.userid
+		LEFT JOIN `school` ON registered.school = school.id
+		LEFT JOIN `dynamiclog` ON `dynamiclog`.userid = 100
+		AND dynamiclog.dynamicId = dynamic.id
+		WHERE
+			dynamic.deleted = 0
+			<if test="getdynamic.userid != null">
+				AND dynamic.userid = ${getdynamic.userid}
+			</if>			
+		ORDER BY
+			`createtime` ASC
 		limit ${getdynamic.pageNo},${getdynamic.pageSize}
 	</select>
 	
