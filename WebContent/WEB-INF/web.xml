@@ -36,21 +36,37 @@
 		<servlet-name>mvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		 <!-- 默认情况下：DispatcherServlet会寻找WEB-INF下，命名规范为[servlet-name]-servlet.xml文件。如：在上例中，它就会找/WEB-INF/spring-servlet.xml
-                                                    如果需要修改，需要在web.xml中的<servlet>标记中增加 <init-param>。。。  </init-param>：-->
-    <init-param>
-       <param-name>contextConfigLocation</param-name>
-       <param-value>/WEB-INF/classes/mvc-servlet.xml</param-value>
-    </init-param>
+              如果需要修改，需要在web.xml中的<servlet>标记中增加 <init-param>。。。  </init-param>：-->
+	    <init-param>
+	       <param-name>contextConfigLocation</param-name>
+	       <param-value>/WEB-INF/classes/mvc-servlet.xml</param-value>
+	    </init-param>
 	</servlet>
-	<servlet-mapping>
-		<servlet-name>mvc</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
 	
 	<servlet-mapping>
 		<servlet-name>mvc</servlet-name>
 		<url-pattern>*.*</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.css</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.woff</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.ttf</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>mvc</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping> 
 	
 	<!-- 监听器 -->
 	<listener>

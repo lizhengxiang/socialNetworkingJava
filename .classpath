@@ -49,5 +49,8 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-4.2.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-portlet-4.2.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-websocket-4.2.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jedis-2.0.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-data-redis.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-pool-1.6.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

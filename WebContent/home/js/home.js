@@ -35,13 +35,13 @@ function getCookie(name)
 }
 
 function home() {
-    var href = '/home/index.html';
+    var href = '/socialNetworkingJava/home/index.html';
     setCookie('url',href,500000);
     $('iframe').attr('src', href);
 }
 function personal() {
     if(flg){
-        var href = '/personal/index.html';
+        var href = '/socialNetworkingJava/personal/index.html';
         setCookie('url',href,500000);
         $('iframe').attr('src', href);
     }else {
@@ -54,7 +54,7 @@ function personal() {
 
 function mapchat() {
     if(flg){
-        var href = '/mapchat/index.html';
+        var href = '/socialNetworkingJava/mapchat/index.html';
         setCookie('url',href,500000);
         $('iframe').attr('src', href);
     }else {
@@ -67,7 +67,7 @@ function mapchat() {
 
 function createactivities() {
     if(flg){
-        var href = '/activities/createactivities.html';
+        var href = '/socialNetworkingJava/activities/createactivities.html';
         setCookie('url',href,500000);
         $('iframe').attr('src', href);
     }else {
@@ -79,7 +79,7 @@ function createactivities() {
 }
 function activities() {
     if(flg){
-        var href = '/activities/index.html';
+        var href = '/socialNetworkingJava/activities/index.html';
         setCookie('url',href,500000);
         $('iframe').attr('src', href);
     }else {
@@ -117,7 +117,7 @@ function posting(args) {
 }
 $(function () {
     if(getCookie('url') == null){
-        var href = '/home/index.html';
+        var href = '/socialNetworkingJava/home/index.html';
         $('iframe').attr('src', href);
     }else {
         var href = getCookie('url');
